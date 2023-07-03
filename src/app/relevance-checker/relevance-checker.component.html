@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div class="mb-3">
+          <label for="querytext" class="form-label">Query Text:</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="querytext"
+            name="querytext"
+            id="querytext"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="fraction" class="form-label">Fraction:</label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="fraction"
+            name="fraction"
+            id="fraction"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="partName" class="form-label">Part Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="partName"
+            name="partName"
+            id="partName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="value" class="form-label">Value:</label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="value"
+            name="value"
+            id="value"
+          />
+        </div>
+        <button class="btn btn-primary" (click)="sendPostRequest()">
+          Check Relevance
+        </button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h3>Results:</h3>
+      <div class="card" style="height: 400px; overflow-y: scroll">
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let record of records">
+              <h6>{{ record.title }}</h6>
+
+              <p>GlobalRelevance : {{ record.globalrelevance }}</p>
+              <p>WordScoreRelevance : {{ record.wordscorerelevance }}</p>
+              <p>WordsRelevance : {{ record.wordsrelevance }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

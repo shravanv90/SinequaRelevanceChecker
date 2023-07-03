@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "relevance-tune": {
+    "relevance-checker-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,23 +17,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/relevance-tune",
+            "outputPath": "dist/relevance-checker-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css",
-              "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-              
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
             ],
-            "scripts": [
-              "../node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -72,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "relevance-tune:build:production"
+              "browserTarget": "relevance-checker-app:build:production"
             },
             "development": {
-              "browserTarget": "relevance-tune:build:development"
+              "browserTarget": "relevance-checker-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "relevance-tune:build"
+            "browserTarget": "relevance-checker-app:build"
           }
         },
         "test": {
@@ -93,22 +87,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css",
-              "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-              
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
             ],
-            "scripts": [
-              "../node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           }
         }
       }
     }
   },
-  "defaultProject": "relevance-tune"
+  "defaultProject": "relevance-checker-app"
 }
