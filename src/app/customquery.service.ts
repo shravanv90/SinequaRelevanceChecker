@@ -13,7 +13,8 @@ export class CustomqueryService {
     querytext: string,
     fraction: number,
     partName: string,
-    value: number
+    value: number,
+    operator: string
   ): Observable<any> {
     const relevanceTransforms = `
       <RelevanceTransforms>
@@ -21,7 +22,7 @@ export class CustomqueryService {
           <PartNames mode="and">
             <PartName>${partName}</PartName>
           </PartNames>
-          <Action op="mul" value="${value}"></Action>
+          <Action op="${operator}" value="${value}"></Action>
         </PartNameBoost>
       </RelevanceTransforms>
     `;

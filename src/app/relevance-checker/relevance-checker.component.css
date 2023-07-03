@@ -20,3 +20,12 @@ ul {
 li {
   margin-bottom: 5px;
 }
+
+.scrollable-container {
+  height: 400px; /* Set the desired height */
+  overflow-y: auto; /* Enable vertical scrollbar */
+}
+
+.scrollable-content {
+  padding-right: 15px; /* Add right padding to avoid scrollbar overlay */
+}
