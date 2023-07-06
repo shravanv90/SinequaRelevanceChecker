@@ -9,25 +9,39 @@ import { Config } from './config';
 export class CustomqueryService {
   constructor(private http: HttpClient, private config: Config) {}
 
+  getPartNames(queryText: string): Observable<any> {
+    const apiUrl = this.config.dataset_url;
+    const requestBody = {
+      user: this.config.username,
+      password: this.config.password,
+      parameters: {
+        param1: queryText,
+      },
+    };
+
+    return this.http.post(apiUrl, requestBody);
+  }
+
   postQuery(
     querytext: string,
     fraction: number,
     partName: string,
     value: number,
-    operator: string
+    operator: string,
+    partNameWeights: { partName: string; partWeight: string }[],
+    relevanceTransformsPayload: string
   ): Observable<any> {
-    const relevanceTransforms = `
-      <RelevanceTransforms>
-        <PartNameBoost fraction="${fraction}">
-          <PartNames mode="and">
-            <PartName>${partName}</PartName>
-          </PartNames>
-          <Action op="${operator}" value="${value}"></Action>
-        </PartNameBoost>
-      </RelevanceTransforms>
-    `;
+    let textPartWeights = '';
+    for (const row of partNameWeights) {
+      if (row.partName && row.partWeight) {
+        textPartWeights += `${row.partName}:${row.partWeight},`;
+      }
+    }
+    if (textPartWeights) {
+      textPartWeights = textPartWeights.slice(0, -1); // Remove the trailing comma
+    }
 
-    const requestBody = {
+    return this.http.post<any>(this.config.api_url + 'search.query', {
       app: this.config.app_name,
       query: {
         name: this.config.query_webservice_name,
@@ -35,16 +49,11 @@ export class CustomqueryService {
         text: querytext,
         page: 1,
         pageSize: 10,
-        relevanceTransforms: relevanceTransforms,
+        relevanceTransforms: relevanceTransformsPayload,
+        textPartWeights,
       },
       user: this.config.username,
       password: this.config.password,
-    };
-
-    console.log('inside post query service');
-    return this.http.post<any>(
-      this.config.api_url + 'search.query',
-      requestBody
-    );
+    });
   }
 }

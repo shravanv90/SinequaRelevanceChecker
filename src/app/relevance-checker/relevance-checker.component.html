@@ -1,58 +1,132 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
+      <h4>Search Query:</h4>
+      <input type="text" class="form-control" [(ngModel)]="querytext" />
       <div class="border p-3">
         <h4>Relevance Transform</h4>
         <form>
-          <div class="mb-3">
-            <label for="querytext" class="form-label">Query Text:</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="querytext"
-              name="querytext"
-              id="querytext"
-            />
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Transform</th>
+                <th>Fraction</th>
+                <th>Part Name</th>
+                <th>Value</th>
+                <th>Operator</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let transformRow of relevanceTransforms; let i = index"
+              >
+                <td>
+                  <select
+                    class="form-select"
+                    [(ngModel)]="transformRow.transform"
+                    name="transform"
+                  >
+                    <option value="PartNameBoost">PartNameBoost</option>
+                    <option value="RelevanceRounding">RelevanceRounding</option>
+                    <option value="RelevanceTruncate">RelevanceTruncate</option>
+                  </select>
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="transformRow.fraction"
+                    name="fraction"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="transformRow.partName"
+                    name="partName"
+                  >
+                    <option value="">Select Part Name</option>
+                    <option
+                      *ngFor="let partName of transformRow.partNames"
+                      [value]="partName"
+                    >
+                      {{ partName }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="transformRow.value"
+                    name="value"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-select"
+                    [(ngModel)]="transformRow.operator"
+                    name="operator"
+                  >
+                    <option value="and">AND</option>
+                    <option value="or">OR</option>
+                  </select>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    (click)="removeRelevanceTransform(i)"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-end">
+            <button class="btn btn-secondary" (click)="addRelevanceTransform()">
+              Add Row
+            </button>
           </div>
-          <div class="mb-3">
-            <label for="fraction" class="form-label">Fraction:</label>
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="fraction"
-              name="fraction"
-              id="fraction"
-            />
+        </form>
+      </div>
+      <div class="border p-3 mt-3">
+        <h4>Part Name Weight</h4>
+        <form>
+          <div class="mb-3" *ngFor="let row of partNameWeights; let i = index">
+            <div class="row">
+              <div class="col">
+                <label for="partName{{ i }}" class="form-label"
+                  >Part Name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="row.partName"
+                  [name]="'partName' + i"
+                  [id]="'partName' + i"
+                />
+              </div>
+              <div class="col">
+                <label for="partWeight{{ i }}" class="form-label"
+                  >Weight:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="row.partWeight"
+                  [name]="'partWeight' + i"
+                  [id]="'partWeight' + i"
+                />
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="partName" class="form-label">Part Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="partName"
-              name="partName"
-              id="partName"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="value" class="form-label">Value:</label>
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="value"
-              name="value"
-              id="value"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="operator" class="form-label">Operator:</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="operator"
-              name="operator"
-              id="operator"
-            />
+          <div class="text-end">
+            <button class="btn btn-secondary" (click)="addRow()">
+              Add Row
+            </button>
           </div>
         </form>
       </div>
