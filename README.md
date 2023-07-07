@@ -4,7 +4,7 @@ This is a web application built with Angular that allows you to perform relevanc
 
 ![Relevance Checker App](./src/assets/relevancy.png)
 
-## NOTE: These are very basic relevancy checks and it is advisable to go through sinequa's relevancy documentation before using the app. A lot of relevance parameters have not been configured and I hope I will be enhancing and adding new features to the app in the future. Your contributions are always welcome!.
+### NOTE: These are very basic relevancy checks and it is advisable to go through sinequa's relevancy documentation before using the app. A lot of relevance parameters have not been configured and I hope I will be enhancing and adding new features to the app in the future. The purpose of the app is not to mimic or replace Sinequa's relevancy configs but it provides a more intuitive interface for a user to quickly tweak some parameters and see results instantly. But your contributions and suggestions are always welcome!
 
 ## Prerequisites
 
