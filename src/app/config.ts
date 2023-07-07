@@ -4,4 +4,6 @@ export class Config {
   username: string = '<user>';
   password: string = '<passw>';
   api_url: string = 'http://<hostname>/api/v1/';
+  dataset_url: string =
+    'http://<hostname>/api/v1//search.dataset/<dataset query name>';
 }
