@@ -2,7 +2,7 @@
 
 This is a web application built with Angular that allows you to perform relevance checks in sinequa by specifying search query parameters and applying relevance transforms.
 
-![Relevance Checker App](./src/assets/relevancy.png)
+![Relevance Checker App](./src/assets/relevancy1.png)
 
 ### NOTE: These are very basic relevancy checks and it is advisable to go through sinequa's relevancy documentation before using the app. A lot of relevance parameters have not been configured and I hope I will be enhancing and adding new features to the app in the future. The purpose of the app is not to mimic or replace Sinequa's relevancy configs but it provides a more intuitive interface for a user to quickly tweak some parameters and see results instantly. But your contributions and suggestions are always welcome!
 
@@ -27,7 +27,7 @@ To run this application, you need to have the following software installed on yo
 
 3. Add a dataset query to fetch partnames:
 
-![Relevance Checker App](./src/assets/relevancy_dataset.png)
+![Relevance Checker App](./src/assets/relevancy_dataset1.png)
 
 3. Install the dependencies using npm:
 
