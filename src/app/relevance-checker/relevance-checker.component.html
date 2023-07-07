@@ -26,10 +26,9 @@
                     class="form-select"
                     [(ngModel)]="transformRow.transform"
                     name="transform"
+                    title="Part name boost -> Updates the global relevance based on the presence of at least one query term in a disjunction or conjunction of part names"
                   >
                     <option value="PartNameBoost">PartNameBoost</option>
-                    <option value="RelevanceRounding">RelevanceRounding</option>
-                    <option value="RelevanceTruncate">RelevanceTruncate</option>
                   </select>
                 </td>
 
@@ -39,6 +38,7 @@
                     class="form-control"
                     [(ngModel)]="transformRow.fraction"
                     name="fraction"
+                    title="Fraction -> Corresponds to an attribute of the Part Name Boost-type transformation, used to define the minimum number of words (in terms of percentage of the number of findable search terms in the query) for the boosting to apply. The fraction attribute value is an integer comprised between 0 and 100."
                   />
                 </td>
                 <td>
@@ -46,6 +46,7 @@
                     class="form-control"
                     [(ngModel)]="transformRow.partName"
                     name="partName"
+                    title="Part names -> Indicates the name of the part nameClosed on which the transformation will apply. A part name corresponds to a specific area within the indexed documents. You can reference up to 64 part names."
                   >
                     <option value="">Select Part Name</option>
                     <option
@@ -62,6 +63,7 @@
                     class="form-control"
                     [(ngModel)]="transformRow.value"
                     name="value"
+                    title="Value -> Indicates the value of the action to be taken in order to change the global relevance. The action type is set in the Action option."
                   />
                 </td>
                 <td>
@@ -69,6 +71,7 @@
                     class="form-select"
                     [(ngModel)]="transformRow.operator"
                     name="operator"
+                    title="Operator -> Indicates the type of operator for the transformation. The two possible operators are: 'or' and 'and'. 'or' indicates that the relevance transform rule applies when the minimum number of words set in the Fraction option is reached when considering the union of all the specified part names. 'and' indicates that the relevance transform rule applies when the minimum number of words set in the Fraction option is reached in each of the specified part names."
                   >
                     <option value="and">AND</option>
                     <option value="or">OR</option>
@@ -86,7 +89,7 @@
             </tbody>
           </table>
           <div class="text-end">
-            <button class="btn btn-secondary" (click)="addRelevanceTransform()">
+            <button class="btn btn-success" (click)="addRelevanceTransform()">
               Add Row
             </button>
           </div>
@@ -107,6 +110,7 @@
                   [(ngModel)]="row.partName"
                   [name]="'partName' + i"
                   [id]="'partName' + i"
+                  title="Indicates the name of the document part (defined in the settings of a collection)."
                 />
               </div>
               <div class="col">
@@ -119,14 +123,18 @@
                   [(ngModel)]="row.partWeight"
                   [name]="'partWeight' + i"
                   [id]="'partWeight' + i"
+                  title="Indicates the weight given to the document part. The value is either an integer or floating number comprised between 0 and 100."
                 />
+              </div>
+              <div>
+                <button class="btn btn-danger" (click)="removeRow(i)">
+                  Remove
+                </button>
               </div>
             </div>
           </div>
           <div class="text-end">
-            <button class="btn btn-secondary" (click)="addRow()">
-              Add Row
-            </button>
+            <button class="btn btn-success" (click)="addRow()">Add Row</button>
           </div>
         </form>
       </div>
